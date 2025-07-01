@@ -21,4 +21,4 @@ Hi There <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" w
 
 <br/>
 If you like my work then please star this repository and subscribe to our youtube channel. 
-<br/>Connect to me: [https://www.linkedin.com/in/veejnas7/](https://www.linkedin.com/in/harini-kannaiyan-698603168/)
+<br/>Connect to me: https://www.linkedin.com/in/harini-kannaiyan-698603168/
