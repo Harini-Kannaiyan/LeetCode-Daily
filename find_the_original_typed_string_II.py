@@ -1,6 +1,4 @@
-Time Complexity: O(N+K^2)  |  Space Complexity: O(K)
-
-----------------------------------------------------
+# Time Complexity: O(N+K^2)  |  Space Complexity: O(K)
 
 class Solution:
 
