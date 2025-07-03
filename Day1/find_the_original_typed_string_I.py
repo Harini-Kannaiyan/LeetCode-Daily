@@ -1,4 +1,4 @@
-:: Time Complelexity: O(N) | Space: O(1)
+# Time Complelexity: O(N) | Space: O(1)
 
 class Solution:
     def possibleStringCount(self, word: str) -> int:
