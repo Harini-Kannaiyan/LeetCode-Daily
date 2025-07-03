@@ -1,5 +1,6 @@
+#TC: 2^t , t is the power 1, 2, 3,
+
 class Solution:
-    #Tc - 2^t , t is the power 1, 2, 3,
     def kthCharacter(self, k: int) -> str:
         prevString = 'a'
         while len(prevString) < k:
@@ -11,9 +12,11 @@ class Solution:
             prevString+= currString
         return prevString[k-1] 
 
+
+# Logarithmic approach: O(log(k))
+
 class Solution:
     def kthCharacter(self, k: int) -> str:
-        #TC = log(k)
         ans = 0
         while k != 1:
             power = k.bit_length() - 1
@@ -23,7 +26,9 @@ class Solution:
             ans += 1
         return chr(ord("a") + ans)
 
+
+
+# Bit Count: TC (O(1))
 class Solution:
-    #Tc = O(1)
     def kthCharacter(self, k: int) -> str:
         return chr(ord("a")+ (k-1).bit_count())
