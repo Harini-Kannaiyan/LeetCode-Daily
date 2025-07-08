@@ -1,5 +1,5 @@
 class Solution:
-    #top down approach
+    #top down approach TC: n * k* logn), SC - o(n*k)+stack space
     def maxValue(self, events: List[List[int]], k: int) -> int:
         def searchNextEvent(currentEvent):
             left = 0
@@ -16,25 +16,24 @@ class Solution:
         def dfs(cur_index, count):
             if count == 0 or cur_index == n:
                 return 0
-            if dp[count][cur_index] != -1:
-                return dp[count][cur_index]
+            if dp[cur_index][count] != -1:
+                return dp[cur_index][count]
 
             # Find the nearest available event after attending event 0.
 
             next_index = searchNextEvent(events[cur_index][1])
-            dp[count][cur_index] = max(dfs(cur_index + 1, count), events[cur_index][2] + dfs(next_index, count - 1))
-            return dp[count][cur_index]
+            dp[cur_index][count] = max(dfs(cur_index + 1, count), events[cur_index][2] + dfs(next_index, count - 1))
+            return dp[cur_index][count]
        
         events.sort()
         n = len(events)
-        starts = [start for start, end, value in events]
         dp = [[0] * (k+1) for _ in range(n+1)]
 
-        dfs(0, 0)        
+        dfs(0, k)        
         return dp[0][k]
 
 class Solution:
-    #bottom up approach
+    #bottom up approach TC: n(k+logn), SC - o(n*k)
     def maxValue(self, events: List[List[int]], k: int) -> int:
         def searchNextEvent(currentEvent):
             left = 0
@@ -58,6 +57,8 @@ class Solution:
                 dp[cur_index][count] = max(dp[cur_index + 1][count], events[cur_index][2] + dp[next_index][count-1])
         
         return dp[0][k]
+
+
 
 
 
