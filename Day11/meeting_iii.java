@@ -3,7 +3,7 @@
 class Solution {
     public int mostBooked(int n, int[][] meetings) {
         Arrays.sort(meetings, (a, b) -> Integer.compare(a[0], b[0]));
-        int[] meetingCount = new int[n];
+        int[] meetingsAttendedCount = new int[n];
         long[] roomAvailableTime = new long[n];
 
         for (int[] meeting : meetings) {
@@ -15,7 +15,7 @@ class Solution {
             for (int i = 0; i < n; i++) {
                 if (roomAvailableTime[i] <= start) {
                     roomAvailableTime[i] = end;
-                    meetingCount[i]++;
+                    meetingsAttendedCount[i]++;
                     assigned = true;
                     break;
                 }
@@ -27,13 +27,13 @@ class Solution {
 
             if (!assigned) {
                 roomAvailableTime[minRoom] += (end - start);
-                meetingCount[minRoom]++;
+                meetingsAttendedCount[minRoom]++;
             }
         }
 
         int maxIdx = 0;
         for (int i = 1; i < n; i++) {
-            if (meetingCount[i] > meetingCount[maxIdx]) {
+            if (meetingsAttendedCount[i] > meetingsAttendedCount[maxIdx]) {
                 maxIdx = i;
             }
         }
@@ -52,7 +52,7 @@ class Solution {
     public int mostBooked(int n, int[][] meetings) {
         Arrays.sort(meetings, Comparator.comparingInt(a -> a[0]));
 
-        int[] meetingCount = new int[n];
+        int[] meetingsAttendedCount = new int[n];
         PriorityQueue<Integer> available = new PriorityQueue<>();
         for (int i = 0; i < n; i++) available.offer(i);
 
@@ -80,12 +80,12 @@ class Solution {
                 occupied.offer(new long[]{newEnd, room});
             }
 
-            meetingCount[room]++;
+            meetingsAttendedCount[room]++;
         }
 
         int maxIdx = 0;
         for (int i = 1; i < n; i++) {
-            if (meetingCount[i] > meetingCount[maxIdx]) {
+            if (meetingsAttendedCount[i] > meetingsAttendedCount[maxIdx]) {
                 maxIdx = i;
             }
         }

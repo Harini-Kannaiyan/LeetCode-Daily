@@ -2,7 +2,7 @@
 // TC: MlogM(sort)+ M*N | SC: O(3N) = ~O(N)
 function mostBooked(n, meetings) {
     meetings.sort((a, b) => a[0] - b[0]);
-    const meetingCount = Array(n).fill(0);
+    const meetingsAttendedCount = Array(n).fill(0);
     const roomAvailableTime = Array(n).fill(0);
 
     for (const [start, end] of meetings) {
@@ -13,7 +13,7 @@ function mostBooked(n, meetings) {
         for (let i = 0; i < n; i++) {
             if (roomAvailableTime[i] <= start) {
                 roomAvailableTime[i] = end;
-                meetingCount[i]++;
+                meetingsAttendedCount[i]++;
                 assigned = true;
                 break;
             }
@@ -25,12 +25,12 @@ function mostBooked(n, meetings) {
 
         if (!assigned) {
             roomAvailableTime[minRoom] += end - start;
-            meetingCount[minRoom]++;
+            meetingsAttendedCount[minRoom]++;
         }
     }
 
-    let maxMeetings = Math.max(...meetingCount);
-    return meetingCount.indexOf(maxMeetings);
+    let maxMeetings = Math.max(...meetingsAttendedCount);
+    return meetingsAttendedCount.indexOf(maxMeetings);
 }
 
 
@@ -104,7 +104,7 @@ class MinHeap {
 
 function mostBooked(n, meetings) {
     meetings.sort((a, b) => a[0] - b[0]);
-    const meetingCount = Array(n).fill(0);
+    const meetingsAttendedCount = Array(n).fill(0);
     const available = new MinHeap((a, b) => a - b);
     for (let i = 0; i < n; i++) available.push(i);
 
@@ -127,9 +127,9 @@ function mostBooked(n, meetings) {
             occupied.push([endTime + (end - start), room]);
         }
 
-        meetingCount[room]++;
+        meetingsAttendedCount[room]++;
     }
 
-    return meetingCount.indexOf(Math.max(...meetingCount));
+    return meetingsAttendedCount.indexOf(Math.max(...meetingsAttendedCount));
 }
 

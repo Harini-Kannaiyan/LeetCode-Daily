@@ -10,9 +10,9 @@ class Solution:
             nextAvailableRoom = 0
             foundFreeRoom = False
             for i in range(n):
-                if rooms[i] <= start:
+                if roomsAvailableAtTime[i] <= start:
                     foundFreeRoom = True
-                    meetingCount[i]+=1
+                    meetingsAttendedCount[i]+=1
                     roomsAvailableAtTime[i] = end
                     break
                 if minRoomAvailabilityTime > roomsAvailableAtTime[i]:
@@ -21,7 +21,7 @@ class Solution:
 
             if not foundFreeRoom:
                 roomsAvailableAtTime[nextAvailableRoom]+= (end-start)
-                meetingCount[nextAvailableRoom]+=1
+                meetingsAttendedCount[nextAvailableRoom]+=1
         return meetingsAttendedCount.index(max(meetingsAttendedCount))
 
 class Solution:

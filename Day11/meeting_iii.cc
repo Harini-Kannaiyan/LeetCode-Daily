@@ -4,7 +4,7 @@ class Solution {
 public:
     int mostBooked(int n, vector<vector<int>>& meetings) {
         sort(meetings.begin(), meetings.end());
-        vector<int> meetingCount(n, 0);
+        vector<int> meetingsAttendedCount(n, 0);
         vector<long long> roomAvailableTime(n, 0);
 
         for (auto& meeting : meetings) {
@@ -16,7 +16,7 @@ public:
             for (int i = 0; i < n; ++i) {
                 if (roomAvailableTime[i] <= start) {
                     roomAvailableTime[i] = end;
-                    meetingCount[i]++;
+                    meetingsAttendedCount[i]++;
                     assigned = true;
                     break;
                 }
@@ -28,11 +28,11 @@ public:
 
             if (!assigned) {
                 roomAvailableTime[minRoom] += (end - start);
-                meetingCount[minRoom]++;
+                meetingsAttendedCount[minRoom]++;
             }
         }
 
-        return max_element(meetingCount.begin(), meetingCount.end()) - meetingCount.begin();
+        return max_element(meetingsAttendedCount.begin(), meetingsAttendedCount.end()) - meetingsAttendedCount.begin();
     }
 };
 
@@ -47,7 +47,7 @@ public:
     int mostBooked(int n, vector<vector<int>>& meetings) {
         sort(meetings.begin(), meetings.end());
 
-        vector<int> meetingCount(n, 0);
+        vector<int> meetingsAttendedCount(n, 0);
         priority_queue<int, vector<int>, greater<int>> available;
         for (int i = 0; i < n; ++i) available.push(i);
 
@@ -75,9 +75,9 @@ public:
                 occupied.emplace(endTime, room);
             }
 
-            meetingCount[room]++;
+            meetingsAttendedCount[room]++;
         }
 
-        return max_element(meetingCount.begin(), meetingCount.end()) - meetingCount.begin();
+        return max_element(meetingsAttendedCount.begin(), meetingsAttendedCount.end()) - meetingsAttendedCount.begin();
     }
 };
